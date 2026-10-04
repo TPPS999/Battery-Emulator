@@ -47,3 +47,15 @@ detect from a cell-count DID. We poll A100..A108 and publish `info.number_of_cel
 - `BATTERIES.cpp`: `#include "FIAT-500E-BATTERY.h"` and add `case BatteryType::Fiat500e:` to the
   name / `new` / battery2 / battery3 / setup switch blocks (mirror `StellantisEcmp`).
 - Web UI battery selector enum (wherever BatteryType is surfaced).
+
+## Architektura (v2): broadcast-primary (wzor Stellantis Pro One)
+Pakiet 500e NADAJE stan na wew. szynie (11-bit) -- sterownik SLUCHA (jak Pro One), a UDS tylko
+dopytuje to, czego nie ma w broadcast (napiecia ogniw A100-A108, SOH A029). Wspolne ramki (FW 500e
+∩ Pro One), uzyte w dekoderze:
+- 0x306 BPCM_SOC: SOC (bajty6-7 [11:0], pelna skala 4080) + stan stycznika bajt5 (8 off/9 precharge/10 on).
+- 0x285 BPCM_ChargeLimits: 3x u16 BE prad ladowania [0.1A] (DCCL) -> max_charge_power_W.
+- 0x359 Limits+Capacity: OBC charge limit [0.1A] + pojemnosc [0.1Ah].
+- 0x307 Temperatures: layout TBD (nierozpisany tez w Pro One).
+Procedura startu (contactor): emulowac ramki pojazdu + ramke "enable" (Pro One: 0x1D8) -> patrz
+fiat_500/docs/procedura_startu.md. DDCL (discharge): 500e nie ma 0x281 -> zrodlo TBD.
+Skalowanie = hipoteza Pro One, do potwierdzenia trace z auta.
