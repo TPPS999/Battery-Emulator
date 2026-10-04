@@ -26,9 +26,13 @@ Signal map/scaling: OBDb/FIAT-500e (verified on real cars) cross-checked with BD
 | A001 | lifetime Ah (x2), kWh (x2)     | u24 fields      | raw/10 -> Ah / kWh         |
 | A021 | coolant inlet/outlet T         | u16             | (verify) -> C              |
 
-## Pack (RE + user): 96s2p, 60Ah cells -> ~120 Ah, ~355 V nom, ~408 V max (OCV table).
-NUMBER_OF_CELLS=96 (A100-A107). NB: cell-SOC list B004-B00C spans ~108 slots (matches firmware
-loop of 108) -- cell voltages are 96.
+## Pack variants -- the BDU firmware supports TWO (select FIAT500E_VARIANT_108S1P in the .h)
+- **96s2p**  : 96S / 2P, 60Ah cells -> ~120 Ah, ~355 V nom, ~408 V max (96 * 4.25).
+- **108s1p** : 108S / 1P                      -> ~459 V max (108 * 4.25).
+The firmware's internal arrays/loops are 108-wide (108 == 0x6C is the dominant loop bound; `< 0x60`/96
+appears mainly as index-range validation). Cell voltages span DIDs A100..A108 (9 frames x 12 = 108);
+96s2p populates 96, 108s1p populates 108. Variant is config-driven (NVM/cal) -- confirm per car, or
+detect from a cell-count DID. We poll A100..A108 and publish `info.number_of_cells` worth of cells.
 
 ## TODO before it works
 1. Confirm 29-bit req/resp headers + whether a diagnostic session (10 03) / tester-present (3E) is

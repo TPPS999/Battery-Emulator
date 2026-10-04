@@ -15,7 +15,7 @@ static const uint16_t POLL_DIDS[] = {
     0xA00A,  // HV battery current
     0xA011,  // pack voltage (cell sum / module sum / link)
     0xA200,  // module temperatures (18 sensors)
-    0xA100, 0xA101, 0xA102, 0xA103, 0xA104, 0xA105, 0xA106, 0xA107,  // cell voltages 1..96
+    0xA100, 0xA101, 0xA102, 0xA103, 0xA104, 0xA105, 0xA106, 0xA107, 0xA108,  // cell V 1..108
     0xA001,  // lifetime Ah / kWh
 };
 static const uint8_t NUM_POLL_DIDS = sizeof(POLL_DIDS) / sizeof(POLL_DIDS[0]);
@@ -71,13 +71,13 @@ static void decode_did(Fiat500eBattery* self, DATALAYER_BATTERY_TYPE* dl, uint16
       dl->status.temperature_max_dC = tmax * 10;
       break;
     }
-    case 0xA100: case 0xA101: case 0xA102: case 0xA103:
-    case 0xA104: case 0xA105: case 0xA106: case 0xA107: {  // 12 cell voltages (mV) each
+    case 0xA100: case 0xA101: case 0xA102: case 0xA103: case 0xA104:
+    case 0xA105: case 0xA106: case 0xA107: case 0xA108: {  // 12 cell voltages (mV) each, 1..108
       uint8_t base = (did - 0xA100) * 12;
-      for (uint8_t i = 0; i < 12 && (base + i) < 96; i++)
+      for (uint8_t i = 0; i < 12 && (base + i) < 108; i++)
         cellv[base + i] = (uint16_t)be(buf, i * 2, 2);
-      if (did == 0xA107)
-        memcpy(dl->status.cell_voltages_mV, cellv, 96 * sizeof(uint16_t));
+      if (did == 0xA108)  // last cell frame -> publish configured cell count (96 or 108)
+        memcpy(dl->status.cell_voltages_mV, cellv, dl->info.number_of_cells * sizeof(uint16_t));
       break;
     }
     case 0xA001:  // lifetime Ah/kWh 24-bit /10 -- diagnostics only, TODO expose
