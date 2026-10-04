@@ -1,4 +1,4 @@
-VERSION "fiat_500e BDU/BPCM - RE firmware + Pro One; dziury do uzupelnienia z logu"
+VERSION "fiat_500e BDU/BPCM - from firmware RE + Pro One; gaps to be filled from a CAN log"
 
 NS_ :
 	NS_DESC_
@@ -760,6 +760,6 @@ BO_ 1233 CELL_4D1: 8 BPCM
  SG_ Flag_4D1_0 : 0|8@1+ (1,0) [0|0] "" VEH
 
 
-CM_ "DBC z matrycy CAN firmware (@0x800faf2c, 221 ramek) + nazwane ramki Stellantis Pro One.";
-CM_ "Meas8_=8b pomiar(SOC/temp typ0x34); Analog*=10-14b(V/I); Flag_/State_/Enum_=status; Raw*=blok ogniw/modulow.";
-CM_ "Placeholdery (1,0)@1 oraz pozycje po klampie = DO WERYFIKACJI z logiem CAN.";
+CM_ "DBC from the firmware CAN matrix (@0x800faf2c, 221 frames) + named frames from Stellantis Pro One.";
+CM_ "Meas8_=8-bit measurement (SOC/temp, FW type 0x34); Analog*=10-14-bit (V/I); Flag_/State_/Enum_=status; Raw*=cell/module block.";
+CM_ "Placeholder signals (1,0)@1 and clamped bit positions = TO BE VERIFIED with a CAN log.";

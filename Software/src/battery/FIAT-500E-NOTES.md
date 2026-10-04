@@ -4,7 +4,7 @@ Files: `FIAT-500E-BATTERY.{h,cpp}`. Poll-based (UDS 0x22) driver for the 2nd-gen
 pack control module (ECU **DA44**). Status: scaffold, **not registered, not HW-tested**.
 
 Signal map/scaling: OBDb/FIAT-500e (verified on real cars) cross-checked with BDU firmware RE
-(AURIX TC27x) -- see sibling project `fiat_500` (docs/mapowanie_can_obdb.md).
+(AURIX TC27x) -- see FIAT-500E-FINDINGS.md.
 
 ## Diagnostic addressing (FCA, 29-bit, 500 kbps) -- CONFIRM on car
 - Request -> DA44: `0x18DA44F1`, Response: `0x18DAF144`, Flow control: `30 00 00`.
@@ -48,14 +48,14 @@ detect from a cell-count DID. We poll A100..A108 and publish `info.number_of_cel
   name / `new` / battery2 / battery3 / setup switch blocks (mirror `StellantisEcmp`).
 - Web UI battery selector enum (wherever BatteryType is surfaced).
 
-## Architektura (v2): broadcast-primary (wzor Stellantis Pro One)
-Pakiet 500e NADAJE stan na wew. szynie (11-bit) -- sterownik SLUCHA (jak Pro One), a UDS tylko
-dopytuje to, czego nie ma w broadcast (napiecia ogniw A100-A108, SOH A029). Wspolne ramki (FW 500e
-∩ Pro One), uzyte w dekoderze:
-- 0x306 BPCM_SOC: SOC (bajty6-7 [11:0], pelna skala 4080) + stan stycznika bajt5 (8 off/9 precharge/10 on).
-- 0x285 BPCM_ChargeLimits: 3x u16 BE prad ladowania [0.1A] (DCCL) -> max_charge_power_W.
-- 0x359 Limits+Capacity: OBC charge limit [0.1A] + pojemnosc [0.1Ah].
-- 0x307 Temperatures: layout TBD (nierozpisany tez w Pro One).
-Procedura startu (contactor): emulowac ramki pojazdu + ramke "enable" (Pro One: 0x1D8) -> patrz
-fiat_500/docs/procedura_startu.md. DDCL (discharge): 500e nie ma 0x281 -> zrodlo TBD.
-Skalowanie = hipoteza Pro One, do potwierdzenia trace z auta.
+## Architecture (v2): broadcast-primary (Stellantis Pro One pattern)
+The 500e pack BROADCASTS its state on the internal bus (11-bit) -- the driver LISTENS (like Pro One),
+and UDS only polls what is not broadcast (cell voltages A100-A108, SOH A029). Shared frames
+(500e FW matrix cap Pro One) used by the decoder:
+- 0x306 BPCM_SOC: SOC (bytes 6-7 [11:0], full scale 4080) + contactor status byte5 (8 off / 9 precharge / 10 on).
+- 0x285 BPCM_ChargeLimits: 3x u16 BE charge current [0.1A] (DCCL) -> max_charge_power_W.
+- 0x359 Limits+Capacity: OBC charge limit [0.1A] + pack capacity [0.1Ah].
+- 0x307 Temperatures: layout TBD (not decoded in Pro One either).
+Startup (contactor): emulate the vehicle frames + the "enable" frame (Pro One: 0x1D8) -> see
+FIAT-500E-FINDINGS.md. DDCL (discharge): the 500e has no 0x281 -> source TBD.
+Scaling = Pro One hypothesis, to be confirmed with a CAN log from the car.
