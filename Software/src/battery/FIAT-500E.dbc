@@ -1,4 +1,4 @@
-VERSION "fiat_500e BDU/BPCM - from firmware RE + Pro One; gaps to be filled from a CAN log"
+VERSION "fiat_500e BDU/BPCM TX - z inwentaryzacji FW @0x800ecaa0 + log weryfikacja"
 
 NS_ :
 	NS_DESC_
@@ -34,732 +34,285 @@ BS_:
 
 BU_: BPCM VEH
 
-BO_ 1 CTRL_001: 8 BPCM
- SG_ Meas8_001_0 : 0|8@1+ (1,0) [0|0] "" VEH
+BO_ 64 BPCM_040_nr2: 8 BPCM
+ SG_ Raw_040 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 2 CTRL_002: 8 BPCM
- SG_ Enum_002_8 : 8|3@1+ (1,0) [0|0] "" VEH
- SG_ State_002_11 : 11|2@1+ (1,0) [0|0] "" VEH
+BO_ 224 BPCM_0E0_nr15: 8 BPCM
+ SG_ Raw_0E0 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 8 CTRL_008: 8 BPCM
+BO_ 263 BPCM_107_nr5: 8 BPCM
+ SG_ Raw_107 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 10 CTRL_00A: 8 BPCM
- SG_ Raw64_00A : 0|64@1+ (1,0) [0|0] "" VEH
+BO_ 336 BPCM_150_nr18: 8 BPCM
+ SG_ Sig_150_b4 : 32|8@1+ (1,0) [0|255] "" VEH
+ SG_ Sig_150_b6 : 48|8@1+ (1,0) [0|255] "" VEH
+ SG_ Sig_150_b7 : 56|8@1+ (1,0) [0|255] "" VEH
 
-BO_ 195 CTRL_0C3: 8 BPCM
- SG_ Meas8_0C3_0 : 0|8@1+ (1,0) [0|0] "" VEH
+BO_ 337 BPCM_151_nr23: 8 BPCM
+ SG_ Sig_151_b3 : 24|8@1+ (1,0) [0|255] "" VEH
 
-BO_ 196 CTRL_0C4: 8 BPCM
- SG_ Meas8_0C4_8 : 8|8@1+ (1,0) [0|0] "" VEH
+BO_ 464 BPCM_1D0_nr9: 8 BPCM
+ SG_ Sig_1D0_b1 : 8|8@1+ (1,0) [0|255] "" VEH
+ SG_ Sig_1D0_b4 : 32|8@1+ (1,0) [0|255] "" VEH
+ SG_ Sig_1D0_b6 : 48|8@1+ (1,0) [0|255] "" VEH
+ SG_ Sig_1D0_b7 : 56|8@1+ (1,0) [0|255] "" VEH
 
-BO_ 197 CTRL_0C5: 8 BPCM
- SG_ Sig_0C5_16 : 16|1@1+ (1,0) [0|0] "" VEH
+BO_ 544 BPCM_CellVoltages: 8 BPCM
+ SG_ CellV_a : 7|16@0+ (1,0) [0|65535] "mV" VEH
+ SG_ CellV_b : 23|16@0+ (1,0) [0|65535] "mV" VEH
+ SG_ CellV_c : 39|16@0+ (1,0) [0|65535] "mV" VEH
+ SG_ CellMux : 55|16@0+ (1,0) [0|65535] "" VEH
 
-BO_ 645 BPCM_ChargeLimits: 8 BPCM
- SG_ ChargeCurrentLim_1 : 0|16@1+ (0.1,0) [0|0] "A" VEH
- SG_ ChargeCurrentLim_2 : 16|16@1+ (0.1,0) [0|0] "A" VEH
- SG_ ChargeCurrentLim_3 : 32|16@1+ (0.1,0) [0|0] "A" VEH
+BO_ 707 BPCM_2C3: 8 BPCM
+ SG_ Sig_2C3_b5 : 40|8@1+ (1,0) [0|255] "" VEH
+ SG_ Sig_2C3_b7 : 56|8@1+ (1,0) [0|255] "" VEH
 
-BO_ 654 PKT_28E: 8 BPCM
- SG_ Sig_28E_0 : 0|1@1+ (1,0) [0|0] "" VEH
- SG_ Sig_28E_1 : 1|1@1+ (1,0) [0|0] "" VEH
- SG_ Sig_28E_2 : 2|1@1+ (1,0) [0|0] "" VEH
- SG_ Sig_28E_3 : 3|1@1+ (1,0) [0|0] "" VEH
- SG_ Sig_28E_4 : 4|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 655 PKT_28F: 8 BPCM
- SG_ Sig_28F_8 : 8|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 656 PKT_290: 8 BPCM
- SG_ Sig_290_16 : 16|4@1+ (1,0) [0|0] "" VEH
-
-BO_ 660 PKT_294: 8 BPCM
- SG_ Sig_294_48 : 48|4@1+ (1,0) [0|0] "" VEH
-
-BO_ 661 PKT_295: 8 BPCM
- SG_ Sig_295_56 : 56|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 663 PKT_297: 8 BPCM
- SG_ Analog10_297_8 : 8|10@1+ (1,0) [0|0] "" VEH
-
-BO_ 665 PKT_299: 8 BPCM
- SG_ Analog10_299_24 : 24|10@1+ (1,0) [0|0] "" VEH
-
-BO_ 667 PKT_29B: 8 BPCM
- SG_ Analog10_29B_40 : 40|10@1+ (1,0) [0|0] "" VEH
-
-BO_ 668 PKT_29C: 8 BPCM
- SG_ Meas8_29C_48 : 48|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 669 PKT_29D: 8 BPCM
- SG_ Meas8_29D_0 : 0|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 670 PKT_29E: 8 BPCM
- SG_ Meas8_29E_8 : 8|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 671 PKT_29F: 8 BPCM
- SG_ Flag_29F_16 : 16|3@1+ (1,0) [0|0] "" VEH
- SG_ State_29F_19 : 19|2@1+ (1,0) [0|0] "" VEH
- SG_ State_29F_21 : 21|2@1+ (1,0) [0|0] "" VEH
- SG_ Flag_29F_23 : 23|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 672 PKT_2A0: 8 BPCM
- SG_ State_2A0_24 : 24|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2A0_26 : 26|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2A0_28 : 28|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2A0_30 : 30|2@1+ (1,0) [0|0] "" VEH
-
-BO_ 673 PKT_2A1: 8 BPCM
- SG_ State_2A1_32 : 32|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2A1_34 : 34|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2A1_36 : 36|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2A1_38 : 38|2@1+ (1,0) [0|0] "" VEH
-
-BO_ 674 PKT_2A2: 8 BPCM
- SG_ State_2A2_40 : 40|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2A2_42 : 42|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2A2_44 : 44|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2A2_46 : 46|2@1+ (1,0) [0|0] "" VEH
-
-BO_ 675 PKT_2A3: 8 BPCM
- SG_ Flag_2A3_0 : 0|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2A3_1 : 1|1@1+ (1,0) [0|0] "" VEH
- SG_ State_2A3_2 : 2|2@1+ (1,0) [0|0] "" VEH
- SG_ Sig_2A3_4 : 4|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 677 VEH_ChargeRequest: 8 VEH
- SG_ Analog10_2A5_8 : 8|10@1+ (1,0) [0|0] "" VEH
-
-BO_ 678 PKT_2A6: 8 BPCM
- SG_ Flag_2A6_56 : 56|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2A6_58 : 58|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 680 PKT_2A8: 8 BPCM
- SG_ Analog12_2A8_8 : 8|12@1+ (1,0) [0|0] "" VEH
-
-BO_ 684 PKT_2AC: 8 BPCM
- SG_ Analog12_2AC_40 : 40|12@1+ (1,0) [0|0] "" VEH
-
-BO_ 685 PKT_2AD: 8 BPCM
- SG_ Flag_2AD_52 : 52|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2AD_54 : 54|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 686 PKT_2AE: 8 BPCM
- SG_ Meas8_2AE_0 : 0|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 687 PKT_2AF: 8 BPCM
- SG_ Flag_2AF_11 : 11|5@1+ (1,0) [0|0] "" VEH
-
-BO_ 688 PKT_2B0: 8 BPCM
- SG_ Flag_2B0_19 : 19|5@1+ (1,0) [0|0] "" VEH
-
-BO_ 689 PKT_2B1: 8 BPCM
- SG_ Flag_2B1_27 : 27|5@1+ (1,0) [0|0] "" VEH
-
-BO_ 690 PKT_2B2: 8 BPCM
- SG_ Flag_2B2_35 : 35|5@1+ (1,0) [0|0] "" VEH
-
-BO_ 692 PKT_2B4: 8 BPCM
- SG_ Flag_2B4_52 : 52|4@1+ (1,0) [0|0] "" VEH
-
-BO_ 693 PKT_2B5: 8 BPCM
- SG_ Meas8_2B5_56 : 56|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 695 PKT_2B7: 8 BPCM
- SG_ Analog12_2B7_24 : 24|12@1+ (1,0) [0|0] "" VEH
-
-BO_ 697 PKT_2B9: 8 BPCM
- SG_ Analog12_2B9_40 : 40|12@1+ (1,0) [0|0] "" VEH
-
-BO_ 698 PKT_2BA: 8 BPCM
- SG_ Flag_2BA_53 : 53|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2BA_54 : 54|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2BA_55 : 55|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 699 PKT_2BB: 8 BPCM
- SG_ Analog12_2BB_56 : 52|12@1+ (1,0) [0|0] "" VEH
-
-BO_ 700 PKT_2BC: 8 BPCM
- SG_ Meas8_2BC_8 : 8|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 701 PKT_2BD: 8 BPCM
- SG_ Meas8_2BD_16 : 16|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 702 PKT_2BE: 8 BPCM
- SG_ Meas8_2BE_24 : 24|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 703 PKT_2BF: 8 BPCM
- SG_ Meas8_2BF_32 : 32|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 704 PKT_2C0: 8 BPCM
- SG_ Meas8_2C0_40 : 40|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 705 PKT_2C1: 8 BPCM
- SG_ Meas8_2C1_48 : 48|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 706 PKT_2C2: 8 BPCM
- SG_ Flag_2C2_56 : 56|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2C2_57 : 57|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2C2_58 : 58|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2C2_59 : 59|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2C2_60 : 60|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2C2_61 : 61|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2C2_62 : 62|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 707 PKT_2C3: 8 BPCM
- SG_ Meas8_2C3_16 : 16|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 708 PKT_2C4: 8 BPCM
- SG_ Meas8_2C4_24 : 24|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 709 PKT_2C5: 8 BPCM
- SG_ Sig_2C5_32 : 32|8@1+ (1,0) [0|0] "" VEH
+BO_ 708 BPCM_2C4: 8 BPCM
+ SG_ Raw_2C4 : 0|64@1+ (1,0) [0|0] "" VEH
 
 BO_ 710 BPCM_2C6: 8 BPCM
- SG_ Sig_2C6_40 : 40|8@1+ (1,0) [0|0] "" VEH
+ SG_ Raw_2C6 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 711 PKT_2C7: 8 BPCM
- SG_ Flag_2C7_55 : 55|1@1+ (1,0) [0|0] "" VEH
+BO_ 770 BPCM_302_nr81: 8 BPCM
+ SG_ Raw_302 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 712 PKT_2C8: 8 BPCM
- SG_ Sig_2C8_56 : 52|12@1+ (1,0) [0|0] "" VEH
-
-BO_ 713 PKT_2C9: 8 BPCM
- SG_ Meas8_2C9_0 : 0|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 714 PKT_2CA: 8 BPCM
- SG_ Meas8_2CA_8 : 8|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 715 PKT_2CB: 8 BPCM
- SG_ Flag_2CB_20 : 20|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 716 PKT_2CC: 8 BPCM
- SG_ Flag_2CC_28 : 28|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2CC_29 : 29|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2CC_30 : 30|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2CC_31 : 31|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 717 PKT_2CD: 8 BPCM
- SG_ Meas8_2CD_32 : 32|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 718 PKT_2CE: 8 BPCM
- SG_ Meas8_2CE_40 : 40|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 719 PKT_2CF: 8 BPCM
- SG_ Meas8_2CF_48 : 48|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 721 PKT_2D1: 8 BPCM
- SG_ Analog12_2D1_8 : 8|12@1+ (1,0) [0|0] "" VEH
-
-BO_ 723 PKT_2D3: 8 BPCM
- SG_ Sig_2D3_24 : 24|9@1+ (1,0) [0|0] "" VEH
-
-BO_ 725 PKT_2D5: 8 BPCM
- SG_ Sig_2D5_40 : 40|9@1+ (1,0) [0|0] "" VEH
-
-BO_ 726 PKT_2D6: 8 BPCM
- SG_ Flag_2D6_52 : 52|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2D6_53 : 53|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2D6_54 : 54|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2D6_55 : 55|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 727 PKT_2D7: 8 BPCM
- SG_ Analog12_2D7_56 : 52|12@1+ (1,0) [0|0] "" VEH
-
-BO_ 728 PKT_2D8: 8 BPCM
- SG_ Flag_2D8_6 : 6|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2D8_7 : 7|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 729 PKT_2D9: 8 BPCM
- SG_ Meas8_2D9_0 : 0|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 730 PKT_2DA: 8 BPCM
- SG_ Meas8_2DA_8 : 8|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 731 PKT_2DB: 8 BPCM
- SG_ Meas8_2DB_16 : 16|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 732 PKT_2DC: 8 BPCM
- SG_ Meas8_2DC_24 : 24|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 733 PKT_2DD: 8 BPCM
- SG_ Meas8_2DD_32 : 32|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 734 PKT_2DE: 8 BPCM
- SG_ Flag_2DE_0 : 0|1@1+ (1,0) [0|0] "" VEH
- SG_ State_2DE_1 : 1|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2DE_3 : 3|2@1+ (1,0) [0|0] "" VEH
- SG_ Enum_2DE_5 : 5|3@1+ (1,0) [0|0] "" VEH
-
-BO_ 735 PKT_2DF: 8 BPCM
- SG_ State_2DF_8 : 8|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2DF_10 : 10|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2DF_12 : 12|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2DF_14 : 14|2@1+ (1,0) [0|0] "" VEH
-
-BO_ 736 PKT_2E0: 8 BPCM
- SG_ State_2E0_16 : 16|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2E0_18 : 18|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2E0_20 : 20|2@1+ (1,0) [0|0] "" VEH
- SG_ State_2E0_22 : 22|2@1+ (1,0) [0|0] "" VEH
-
-BO_ 737 PKT_2E1: 8 BPCM
- SG_ Flag_2E1_24 : 24|4@1+ (1,0) [0|0] "" VEH
- SG_ State_2E1_28 : 28|2@1+ (1,0) [0|0] "" VEH
-
-BO_ 738 PKT_2E2: 8 BPCM
- SG_ State_2E2_0 : 0|2@1+ (1,0) [0|0] "" VEH
-
-BO_ 739 PKT_2E3: 8 BPCM
- SG_ Flag_2E3_14 : 14|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2E3_15 : 15|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 740 PKT_2E4: 8 BPCM
- SG_ Analog14_2E4_16 : 16|14@1+ (1,0) [0|0] "" VEH
-
-BO_ 741 PKT_2E5: 8 BPCM
- SG_ Flag_2E5_30 : 30|2@1+ (1,0) [0|0] "" VEH
-
-BO_ 742 PKT_2E6: 8 BPCM
- SG_ Analog12_2E6_32 : 32|12@1+ (1,0) [0|0] "" VEH
-
-BO_ 743 PKT_2E7: 8 BPCM
- SG_ Enum_2E7_40 : 40|3@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2E7_43 : 43|2@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2E7_45 : 45|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2E7_46 : 46|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2E7_47 : 47|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 744 PKT_2E8: 8 BPCM
- SG_ Flag_2E8_48 : 48|2@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2E8_50 : 50|2@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2E8_52 : 52|4@1+ (1,0) [0|0] "" VEH
-
-BO_ 745 PKT_2E9: 8 BPCM
- SG_ Meas8_2E9_56 : 56|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 747 PKT_2EB: 8 BPCM
- SG_ Analog13_2EB_8 : 8|13@1+ (1,0) [0|0] "" VEH
-
-BO_ 748 PKT_2EC: 8 BPCM
- SG_ Flag_2EC_21 : 21|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 749 PKT_2ED: 8 BPCM
- SG_ Analog13_2ED_24 : 24|13@1+ (1,0) [0|0] "" VEH
-
-BO_ 750 PKT_2EE: 8 BPCM
- SG_ Flag_2EE_37 : 37|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2EE_39 : 39|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 751 PKT_2EF: 8 BPCM
- SG_ Analog13_2EF_40 : 40|13@1+ (1,0) [0|0] "" VEH
-
-BO_ 752 PKT_2F0: 8 BPCM
- SG_ Flag_2F0_48 : 48|4@1+ (1,0) [0|0] "" VEH
-
-BO_ 753 PKT_2F1: 8 BPCM
- SG_ Flag_2F1_60 : 60|4@1+ (1,0) [0|0] "" VEH
-
-BO_ 755 PKT_2F3: 8 BPCM
- SG_ Analog12_2F3_8 : 8|12@1+ (1,0) [0|0] "" VEH
-
-BO_ 759 PKT_2F7: 8 BPCM
- SG_ Sig_2F7_40 : 40|11@1+ (1,0) [0|0] "" VEH
-
-BO_ 760 PKT_2F8: 8 BPCM
- SG_ Flag_2F8_53 : 53|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_2F8_54 : 54|1@1+ (1,0) [0|0] "" VEH
-
-BO_ 762 PKT_2FA: 8 BPCM
- SG_ Sig_2FA_8 : 8|9@1+ (1,0) [0|0] "" VEH
-
-BO_ 763 PKT_2FB: 8 BPCM
- SG_ Meas8_2FB_16 : 16|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 764 PKT_2FC: 8 BPCM
- SG_ Meas8_2FC_24 : 24|8@1+ (1,0) [0|0] "" VEH
-
-BO_ 766 PKT_2FE: 8 BPCM
- SG_ Analog13_2FE_40 : 40|13@1+ (1,0) [0|0] "" VEH
-
-BO_ 768 PKT_300: 8 BPCM
- SG_ Analog13_300_56 : 51|13@1+ (1,0) [0|0] "" VEH
-
-BO_ 769 PKT_301: 8 BPCM
- SG_ State_301_2 : 2|2@1+ (1,0) [0|0] "" VEH
-
-BO_ 773 PKT_305: 8 BPCM
- SG_ Analog10_305_32 : 32|10@1+ (1,0) [0|0] "" VEH
+BO_ 773 BPCM_305: 8 BPCM
+ SG_ Raw_305 : 0|64@1+ (1,0) [0|0] "" VEH
 
 BO_ 774 BPCM_SOC: 8 BPCM
- SG_ Contactor_Status : 40|8@1+ (1,0) [0|0] "" VEH
- SG_ SOC_coarse : 32|8@1+ (1,0) [0|0] "" VEH
- SG_ SOC_fine : 48|16@1+ (1,0) [0|0] "" VEH
+ SG_ SOC_pct : 32|8@1+ (0.3922,0) [0|100] "%" VEH
+ SG_ Contactor_Status : 40|8@1+ (1,0) [0|255] "" VEH
+ SG_ SOC_fine : 51|12@0+ (0.02451,0) [0|100] "%" VEH
 
 BO_ 775 BPCM_Temperatures: 8 BPCM
- SG_ Meas8_307_48 : 48|8@1+ (1,0) [0|0] "" VEH
+ SG_ Temp_1 : 32|8@1+ (1,-40) [-40|215] "degC" VEH
+ SG_ Temp_2 : 40|8@1+ (1,-40) [-40|215] "degC" VEH
+ SG_ Temp_3 : 48|8@1+ (1,-40) [-40|215] "degC" VEH
 
-BO_ 776 VEH_308: 8 VEH
- SG_ Flag_308_57 : 57|1@1+ (1,0) [0|0] "" VEH
- SG_ Enum_308_61 : 61|3@1+ (1,0) [0|0] "" VEH
+BO_ 786 BPCM_312_nr24: 8 BPCM
+ SG_ Raw_312 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 780 PKT_30C: 8 BPCM
- SG_ Sig_30C_24 : 24|32@1+ (1,0) [0|0] "" VEH
+BO_ 850 BPCM_352_nr6: 8 BPCM
+ SG_ Raw_352 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 781 PKT_30D: 8 BPCM
- SG_ Flag_30D_39 : 39|1@1+ (1,0) [0|0] "" VEH
+BO_ 851 BPCM_353_nr20: 8 BPCM
+ SG_ Raw_353 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 782 PKT_30E: 8 BPCM
- SG_ Flag_30E_13 : 13|1@1+ (1,0) [0|0] "" VEH
- SG_ Flag_30E_14 : 14|1@1+ (1,0) [0|0] "" VEH
+BO_ 852 BPCM_354_nr21: 8 BPCM
+ SG_ Raw_354 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 784 PKT_310: 8 BPCM
- SG_ Flag_310_24 : 24|1@1+ (1,0) [0|0] "" VEH
+BO_ 854 BPCM_356_nr14: 8 BPCM
+ SG_ Raw_356 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 785 PKT_311: 8 BPCM
- SG_ Flag_311_39 : 39|1@1+ (1,0) [0|0] "" VEH
+BO_ 1000 BPCM_3E8_nr22: 8 BPCM
+ SG_ Raw_3E8 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 789 CELL_315: 8 BPCM
- SG_ Raw32_315 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1002 BPCM_3EA_nr16: 8 BPCM
+ SG_ Raw_3EA : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 793 CELL_319: 8 BPCM
- SG_ Raw32_319 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1003 BPCM_3EB_nr17: 8 BPCM
+ SG_ Raw_3EB : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 797 CELL_31D: 8 BPCM
- SG_ Raw32_31D : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 801 CELL_321: 8 BPCM
- SG_ Raw32_321 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 805 CELL_325: 8 BPCM
- SG_ Raw32_325 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 809 CELL_329: 8 BPCM
- SG_ Raw32_329 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 813 CELL_32D: 8 BPCM
- SG_ Raw32_32D : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 817 CELL_331: 8 BPCM
- SG_ Raw32_331 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 821 CELL_335: 8 BPCM
- SG_ Raw32_335 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 825 CELL_339: 8 BPCM
- SG_ Raw32_339 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 829 CELL_33D: 8 BPCM
- SG_ Raw32_33D : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 833 CELL_341: 8 BPCM
- SG_ Raw32_341 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 837 CELL_345: 8 BPCM
- SG_ Raw32_345 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 841 CELL_349: 8 BPCM
- SG_ Raw32_349 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 845 CELL_34D: 8 BPCM
- SG_ Raw32_34D : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 849 CELL_351: 8 BPCM
- SG_ Raw32_351 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 853 CELL_355: 8 BPCM
- SG_ Raw32_355 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 857 BPCM_LimitsCapacity: 8 BPCM
- SG_ OBC_ChargeLimit : 0|16@1+ (0.1,0) [0|0] "A" VEH
- SG_ PackCapacity : 16|16@1+ (0.1,0) [0|0] "Ah" VEH
-
-BO_ 861 CELL_35D: 8 BPCM
- SG_ Raw32_35D : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 865 CELL_361: 8 BPCM
- SG_ Raw32_361 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 869 CELL_365: 8 BPCM
- SG_ Raw32_365 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 873 CELL_369: 8 BPCM
- SG_ Raw32_369 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 877 CELL_36D: 8 BPCM
- SG_ Raw32_36D : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 881 CELL_371: 8 BPCM
- SG_ Raw32_371 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 885 CELL_375: 8 BPCM
- SG_ Raw32_375 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 889 CELL_379: 8 BPCM
- SG_ Raw32_379 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 893 CELL_37D: 8 BPCM
- SG_ Raw32_37D : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 897 CELL_381: 8 BPCM
- SG_ Raw32_381 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 901 CELL_385: 8 BPCM
- SG_ Raw32_385 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 905 CELL_389: 8 BPCM
- SG_ Raw32_389 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 909 CELL_38D: 8 BPCM
- SG_ Raw32_38D : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 913 CELL_391: 8 BPCM
- SG_ Raw32_391 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 917 CELL_395: 8 BPCM
- SG_ Raw32_395 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 921 CELL_399: 8 BPCM
- SG_ Raw32_399 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 925 CELL_39D: 8 BPCM
- SG_ Raw32_39D : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 929 CELL_3A1: 8 BPCM
- SG_ Raw32_3A1 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 933 CELL_3A5: 8 BPCM
- SG_ Raw32_3A5 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 937 CELL_3A9: 8 BPCM
- SG_ Raw32_3A9 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 941 CELL_3AD: 8 BPCM
- SG_ Raw32_3AD : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 945 CELL_3B1: 8 BPCM
- SG_ Raw32_3B1 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 949 CELL_3B5: 8 BPCM
- SG_ Raw32_3B5 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 953 CELL_3B9: 8 BPCM
- SG_ Raw32_3B9 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 957 CELL_3BD: 8 BPCM
- SG_ Raw32_3BD : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 961 CELL_3C1: 8 BPCM
- SG_ Raw32_3C1 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 965 CELL_3C5: 8 BPCM
- SG_ Raw32_3C5 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 969 CELL_3C9: 8 BPCM
- SG_ Raw32_3C9 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 973 CELL_3CD: 8 BPCM
- SG_ Raw32_3CD : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 977 CELL_3D1: 8 BPCM
- SG_ Raw32_3D1 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 981 CELL_3D5: 8 BPCM
- SG_ Raw32_3D5 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 985 CELL_3D9: 8 BPCM
- SG_ Raw32_3D9 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 989 CELL_3DD: 8 BPCM
- SG_ Raw32_3DD : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 993 CELL_3E1: 8 BPCM
- SG_ Raw32_3E1 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 997 CELL_3E5: 8 BPCM
- SG_ Raw32_3E5 : 0|32@1+ (1,0) [0|0] "" VEH
-
-BO_ 1001 CELL_3E9: 8 BPCM
- SG_ Raw32_3E9 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1004 BPCM_3EC_nr3: 8 BPCM
+ SG_ Raw_3EC : 0|64@1+ (1,0) [0|0] "" VEH
 
 BO_ 1005 BPCM_3ED: 8 BPCM
- SG_ Raw32_3ED : 0|32@1+ (1,0) [0|0] "" VEH
+ SG_ Raw_3ED : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1009 CELL_3F1: 8 BPCM
- SG_ Raw32_3F1 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1281 BPCM_CellData_501: 8 BPCM
+ SG_ Raw_501 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1013 CELL_3F5: 8 BPCM
- SG_ Raw32_3F5 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1282 BPCM_CellData_502: 8 BPCM
+ SG_ Raw_502 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1017 CELL_3F9: 8 BPCM
- SG_ Raw32_3F9 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1283 BPCM_CellData_503: 8 BPCM
+ SG_ Raw_503 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1021 CELL_3FD: 8 BPCM
- SG_ Raw32_3FD : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1284 BPCM_CellData_504: 8 BPCM
+ SG_ Raw_504 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1025 CELL_401: 8 BPCM
- SG_ Raw32_401 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1285 BPCM_CellData_505: 8 BPCM
+ SG_ Raw_505 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1029 CELL_405: 8 BPCM
- SG_ Raw32_405 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1286 BPCM_CellData_506: 8 BPCM
+ SG_ Raw_506 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1033 CELL_409: 8 BPCM
- SG_ Raw32_409 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1287 BPCM_CellData_507: 8 BPCM
+ SG_ Raw_507 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1037 CELL_40D: 8 BPCM
- SG_ Raw32_40D : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1288 BPCM_CellData_508: 8 BPCM
+ SG_ Raw_508 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1041 CELL_411: 8 BPCM
- SG_ Raw32_411 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1289 BPCM_CellData_509: 8 BPCM
+ SG_ Raw_509 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1045 CELL_415: 8 BPCM
- SG_ Raw32_415 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1296 BPCM_CellData_510: 8 BPCM
+ SG_ Raw_510 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1049 CELL_419: 8 BPCM
- SG_ Raw32_419 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1297 BPCM_CellData_511: 8 BPCM
+ SG_ Raw_511 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1053 CELL_41D: 8 BPCM
- SG_ Raw32_41D : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1298 BPCM_CellData_512: 8 BPCM
+ SG_ Raw_512 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1057 CELL_421: 8 BPCM
- SG_ Raw32_421 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1299 BPCM_CellData_513: 8 BPCM
+ SG_ Raw_513 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1061 CELL_425: 8 BPCM
- SG_ Raw32_425 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1300 BPCM_CellData_514: 8 BPCM
+ SG_ Raw_514 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1065 CELL_429: 8 BPCM
- SG_ Raw32_429 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1301 BPCM_CellData_515: 8 BPCM
+ SG_ Raw_515 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1069 CELL_42D: 8 BPCM
- SG_ Raw32_42D : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1302 BPCM_CellData_516: 8 BPCM
+ SG_ Raw_516 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1073 CELL_431: 8 BPCM
- SG_ Raw32_431 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1303 BPCM_CellData_517: 8 BPCM
+ SG_ Raw_517 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1077 CELL_435: 8 BPCM
- SG_ Raw32_435 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1304 BPCM_CellData_518: 8 BPCM
+ SG_ Raw_518 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1081 CELL_439: 8 BPCM
- SG_ Raw32_439 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1305 BPCM_CellData_519: 8 BPCM
+ SG_ Raw_519 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1085 CELL_43D: 8 BPCM
- SG_ Raw32_43D : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1312 BPCM_CellData_520: 8 BPCM
+ SG_ Raw_520 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1089 CELL_441: 8 BPCM
- SG_ Raw32_441 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1313 BPCM_CellData_521: 8 BPCM
+ SG_ Raw_521 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1093 CELL_445: 8 BPCM
- SG_ Raw32_445 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1314 BPCM_CellData_522: 8 BPCM
+ SG_ Raw_522 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1097 CELL_449: 8 BPCM
- SG_ Raw32_449 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1315 BPCM_CellData_523: 8 BPCM
+ SG_ Raw_523 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1101 CELL_44D: 8 BPCM
- SG_ Raw32_44D : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1316 BPCM_CellData_524: 8 BPCM
+ SG_ Raw_524 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1105 CELL_451: 8 BPCM
- SG_ Raw32_451 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1317 BPCM_CellData_525: 8 BPCM
+ SG_ Raw_525 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1109 CELL_455: 8 BPCM
- SG_ Raw32_455 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1318 BPCM_CellData_526: 8 BPCM
+ SG_ Raw_526 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1113 CELL_459: 8 BPCM
- SG_ Raw32_459 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1319 BPCM_CellData_527: 8 BPCM
+ SG_ Raw_527 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1117 CELL_45D: 8 BPCM
- SG_ Raw32_45D : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1320 BPCM_CellData_528: 8 BPCM
+ SG_ Raw_528 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1121 CELL_461: 8 BPCM
- SG_ Raw32_461 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1321 BPCM_CellData_529: 8 BPCM
+ SG_ Raw_529 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1125 CELL_465: 8 BPCM
- SG_ Raw32_465 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1328 BPCM_CellData_530: 8 BPCM
+ SG_ Raw_530 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1129 CELL_469: 8 BPCM
- SG_ Raw32_469 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1329 BPCM_CellData_531: 8 BPCM
+ SG_ Raw_531 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1133 CELL_46D: 8 BPCM
- SG_ Raw32_46D : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1330 BPCM_CellData_532: 8 BPCM
+ SG_ Raw_532 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1137 CELL_471: 8 BPCM
- SG_ Raw32_471 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1331 BPCM_CellData_533: 8 BPCM
+ SG_ Raw_533 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1141 CELL_475: 8 BPCM
- SG_ Raw32_475 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1332 BPCM_CellData_534: 8 BPCM
+ SG_ Raw_534 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1145 CELL_479: 8 BPCM
- SG_ Raw32_479 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1333 BPCM_CellData_535: 8 BPCM
+ SG_ Raw_535 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1149 CELL_47D: 8 BPCM
- SG_ Raw32_47D : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1334 BPCM_CellData_536: 8 BPCM
+ SG_ Raw_536 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1153 CELL_481: 8 BPCM
- SG_ Raw32_481 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1335 BPCM_CellData_537: 8 BPCM
+ SG_ Raw_537 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1157 CELL_485: 8 BPCM
- SG_ Raw32_485 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1336 BPCM_CellData_538: 8 BPCM
+ SG_ Raw_538 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1161 CELL_489: 8 BPCM
- SG_ Raw32_489 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1337 BPCM_CellData_539: 8 BPCM
+ SG_ Raw_539 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1165 CELL_48D: 8 BPCM
- SG_ Raw32_48D : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1344 BPCM_CellData_540: 8 BPCM
+ SG_ Raw_540 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1169 CELL_491: 8 BPCM
- SG_ Raw32_491 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1345 BPCM_CellData_541: 8 BPCM
+ SG_ Raw_541 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1173 CELL_495: 8 BPCM
- SG_ Raw32_495 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1346 BPCM_CellData_542: 8 BPCM
+ SG_ Raw_542 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1177 CELL_499: 8 BPCM
- SG_ Raw32_499 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1347 BPCM_CellData_543: 8 BPCM
+ SG_ Raw_543 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1181 CELL_49D: 8 BPCM
- SG_ Raw32_49D : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1348 BPCM_CellData_544: 8 BPCM
+ SG_ Raw_544 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1185 CELL_4A1: 8 BPCM
- SG_ Raw32_4A1 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1349 BPCM_CellData_545: 8 BPCM
+ SG_ Raw_545 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1189 CELL_4A5: 8 BPCM
- SG_ Raw32_4A5 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1350 BPCM_CellData_546: 8 BPCM
+ SG_ Raw_546 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1193 CELL_4A9: 8 BPCM
- SG_ Raw32_4A9 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1351 BPCM_CellData_547: 8 BPCM
+ SG_ Raw_547 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1197 CELL_4AD: 8 BPCM
- SG_ Raw32_4AD : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1352 BPCM_CellData_548: 8 BPCM
+ SG_ Raw_548 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1201 CELL_4B1: 8 BPCM
- SG_ Raw32_4B1 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1353 BPCM_CellData_549: 8 BPCM
+ SG_ Raw_549 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1205 CELL_4B5: 8 BPCM
- SG_ Raw32_4B5 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1360 BPCM_CellData_550: 8 BPCM
+ SG_ Raw_550 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1209 CELL_4B9: 8 BPCM
- SG_ Raw32_4B9 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1361 BPCM_CellData_551: 8 BPCM
+ SG_ Raw_551 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1213 CELL_4BD: 8 BPCM
- SG_ Raw32_4BD : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1362 BPCM_CellData_552: 8 BPCM
+ SG_ Raw_552 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1217 CELL_4C1: 8 BPCM
- SG_ Raw32_4C1 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1363 BPCM_CellData_553: 8 BPCM
+ SG_ Raw_553 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1221 CELL_4C5: 8 BPCM
- SG_ Raw32_4C5 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1364 BPCM_CellData_554: 8 BPCM
+ SG_ Raw_554 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1225 CELL_4C9: 8 BPCM
- SG_ Raw32_4C9 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1365 BPCM_CellData_555: 8 BPCM
+ SG_ Raw_555 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1229 CELL_4CD: 8 BPCM
- SG_ Sig_4CD_0 : 0|32@1+ (1,0) [0|0] "" VEH
+BO_ 1599 Diag_63F: 8 BPCM
+ SG_ Raw_63F : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1232 CELL_4D0: 8 BPCM
- SG_ Sig_4D0_0 : 0|24@1+ (1,0) [0|0] "" VEH
+BO_ 1622 BPCM_656_nr0: 8 BPCM
+ SG_ Raw_656 : 0|64@1+ (1,0) [0|0] "" VEH
 
-BO_ 1233 CELL_4D1: 8 BPCM
- SG_ Flag_4D1_0 : 0|8@1+ (1,0) [0|0] "" VEH
+BO_ 2031 UDS_Resp: 8 BPCM
+ SG_ Raw_7EF : 0|64@1+ (1,0) [0|0] "" VEH
 
 
-CM_ "DBC from the firmware CAN matrix (@0x800faf2c, 221 frames) + named frames from Stellantis Pro One.";
-CM_ "Meas8_=8-bit measurement (SOC/temp, FW type 0x34); Analog*=10-14-bit (V/I); Flag_/State_/Enum_=status; Raw*=cell/module block.";
-CM_ "Placeholder signals (1,0)@1 and clamped bit positions = TO BE VERIFIED with a CAN log.";
+CM_ BO_ 224 "rest: 00 00 00 00 00 00 00 00";
+CM_ BO_ 263 "rest: 00 00 00 00 00 00 00 00";
+CM_ BO_ 336 "rest: 00 14 00 87 E2 28 50 B8";
+CM_ BO_ 337 "rest: 07 23 88 B5 00 00 00 00";
+CM_ BO_ 464 "rest: 3E 30 88 08 28 00 80 33";
+CM_ BO_ 544 "rest: 0F 89 0F 92 0F 82 0B 70";
+CM_ BO_ 707 "rest: 00 00 09 A7 09 B8 09 AF";
+CM_ BO_ 708 "rest: 00 00 00 00 00 00 00 01";
+CM_ BO_ 710 "rest: 00 5D 00 00 00 5E 00 00";
+CM_ BO_ 773 "rest: 00 00 00 00 00 00 00 7E";
+CM_ BO_ 774 "rest: 00 00 D9 F2 D6 D2 0D 62";
+CM_ BO_ 775 "rest: 00 00 00 00 3D 3E 3D 00";
+CM_ BO_ 786 "rest: 00 00 00 00 00 00 00 00";
+CM_ BO_ 850 "rest: 00 00 00 00 00 00 00 00";
+CM_ BO_ 851 "rest: 00 00 00 00 04 5F 00 00";
+CM_ BO_ 852 "rest: 00 EA 5F 0A 10 A2 0A F0";
+CM_ BO_ 854 "rest: 00 00 00 00 00 FF 0B A4";
+CM_ BO_ 1000 "rest: 00 00 00 01 C2 00 00 02";
+CM_ BO_ 1002 "rest: FF FF FF FF FF 00 00 00";
+CM_ BO_ 1003 "rest: FE FF FF 16 00 00 00 00";
+CM_ BO_ 1004 "rest: 03 FF 03 FF 03 FF FF 00";
+CM_ BO_ 1005 "rest: FF FF 78 FF FF 7F 00 00";
